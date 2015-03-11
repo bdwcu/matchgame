@@ -6,6 +6,7 @@
     margin: 0 auto;
     padding: 0;
     -webkit-perspective: 1000;
+    overflow: hidden;
   }
 
   .flipper {
@@ -21,11 +22,11 @@
     height: 100%;
   }
 
-  /*.item.active .flipper,
+  .item.active .flipper,
   .item.matched .flipper {
     -webkit-transform: rotateY(180deg);
     -moz-transform: rotateY(180deg);
-  }*/
+  }
 
   .front, .back {
     -webkit-backface-visibility: hidden;

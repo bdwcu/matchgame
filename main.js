@@ -1,5 +1,6 @@
-var search = "potatoes";
+var search = "bdw c7";
 var imgCount = 8;
+var activeImage;
 
 myApp = {
   initialize: function() {
@@ -13,12 +14,48 @@ myApp = {
 
     $.getJSON(url).done(function(data){
       var results = data.responseData.results;
-      self.parseImages();
+
+      self.parseImages(results);
+      self.parseImages(results);
+      self.bindToClickEvents();
     });
   },
 
-  parseImages: function() {
-    $('#main').append('<img src="http://t2.gstatic.com/images?q=tbn:ANd9GcRVqizIOId0ABApma0lOiEf6Nwy99Bm2RUNec7NEeJayll2weAAQgOTlTS6" />');
+  bindToClickEvents: function() {
+    $('.item').click(function() {
+      var $elClicked = $(this);
+      var currentImage = $elClicked.data('index');
+      var flippedImages = $('.item.active').length;
+
+      if (activeImage === currentImage) {
+        // Add class Matched to both
+      }
+
+      if (flippedImages > 1) {
+        $('.item.active').removeClass('active');
+      } else {
+        $elClicked.addClass('active');
+      }
+
+      activeImage = currentImage
+    });
+  },
+
+  parseImages: function(results) {
+
+    $.each(results, function(index, array) {
+      var img = results[index].unescapedUrl;
+      $('#main').append(
+        '<div data-index="' + index + '" class="item col-md-4">' +
+          '<div class="flipper">' +
+            '<div class="front"><span>Front</span></div>'+
+            '<div class="back">' +
+              '<img class="img-responsive" src="'+ img +'"/>'+
+            '</div>' +
+          '</div>' +
+        '</div>'
+        );
+    });
   }
 
 };
