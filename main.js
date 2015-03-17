@@ -36,8 +36,6 @@ myApp = {
       } else {
         $elClicked.addClass('active');
       }
-
-      activeImage = currentImage
     });
   },
 
@@ -46,7 +44,7 @@ myApp = {
     $.each(results, function(index, array) {
       var img = results[index].unescapedUrl;
       $('#main').append(
-        '<div data-index="' + index + '" class="item col-md-4">' +
+        '<div data-index="' + index + '" class="item col-sm-4">' +
           '<div class="flipper">' +
             '<div class="front"><span>Front</span></div>'+
             '<div class="back">' +
